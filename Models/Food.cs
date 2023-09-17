@@ -55,5 +55,23 @@ public partial class Food
         }
         return result;
     }
+
+    public static bool Deletefood(int foodId)
+    {
+        try
+        {
+            using (OrderfooddbContext context = new OrderfooddbContext())
+            {
+                var obj = context.Foods.Where (x=>x.IdFood == foodId).FirstOrDefault(); 
+                context.Foods.Remove(obj);  
+                context.SaveChanges();  
+                return true;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
     #endregion
 }
